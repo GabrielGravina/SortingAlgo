@@ -6,11 +6,11 @@
 
 
 void bubblesort(long int elementos[], int TAM){
-	// Algoritmo de ordena��o Bubblesort:
+
 	int i=0, aux=0, cont=0;
 	for (cont = 0; cont < TAM; cont++) {	
 		if(TAM != 10000){
-//			printf("%d", elementos[0]);
+
 		}
    		for (i = 0; i < TAM - 1; i++) {
      		if (elementos[i] > elementos[i + 1]) {
@@ -56,20 +56,15 @@ void quick_sort(long int *a, int left, int right) {
 void countsort(long int *elementos, long int n, long int k){
     // cria um array inteiro de tamanho `n` para armazenar o array ordenado
     int output[n];
-	
-	
- 
-    // cria um elementoay inteiro de tamanho `k + 1`, inicializado por todo zero
+
     int freq[k + 1];
     memset(freq, 0, sizeof(freq));
  
-    // 1. Usando o valor de cada item na matriz de entrada como um �ndice,
-     // armazena a contagem de cada inteiro em `freq []`
+
     for (int i = 0; i < n; i++) {
         freq[elementos[i]]++;
     }
  
-    /// 2. Calcule o �ndice inicial para cada n�mero inteiro
     int total = 0;
     for (int i = 0; i < k + 1; i++)
     {
@@ -77,15 +72,13 @@ void countsort(long int *elementos, long int n, long int k){
         freq[i] = total;
         total += oldCount;
     }
- 
-    // 3. Copie para a matriz de sa�da, preservando a ordem das entradas com chaves iguais
+
     for (int i = 0; i < n; i++)
     {
         output[freq[elementos[i]]] = elementos[i];
         freq[elementos[i]]++;
     }
  
-    // copia o array de sa�da de volta para o array de entrada
     for (int i = 0; i < n; i++) {
         elementos[i] = output[i];
     }
@@ -142,7 +135,7 @@ int main()
    if ((fptr10 = fopen("10","r")) == NULL){
        printf("Error! opening file");
 
-       // Program exits if the file pointer returns NULL.
+       //Sai do programa caso não seja possível abrir os arquivos
        exit(1);
    }
    
@@ -153,14 +146,10 @@ int main()
    
    fclose(fptr10); 
  	
-// 	for(int cont = 0; cont < 10000; cont++){
-// 		printf(" %d ", vet10[cont]);
-//	 }
- 	
    if ((fptr50 = fopen("50","r")) == NULL){
        printf("Error! opening file");
 
-       // Program exits if the file pointer returns NULL.
+       
        exit(1);
    }
 	for(int cont = 0; cont < TAM50; cont++){
@@ -173,7 +162,7 @@ int main()
    if ((fptr90 = fopen("90","r")) == NULL){
        printf("Error! opening file");
 
-       // Program exits if the file pointer returns NULL.
+       
        exit(1);
    }
 	for(int cont = 0; cont < TAM90; cont++){
@@ -189,13 +178,13 @@ int main()
 		scanf("%d", &escolha);
 			
 		if(escolha == 1){
-			for(int iteration = 0; iteration < 2; iteration++){
+			
 				
-				clock_t begin10B = clock(); //Inicia a contagem do tempo.
+				clock_t begin10B = clock();
 
 				bubblesort(vet10, TAM10);
 				
-				clock_t end10B = clock();; //Pega o tempo após a execução do algoritmo
+				clock_t end10B = clock();
 				double time_spent10B = (double)(end10B - begin10B) / CLOCKS_PER_SEC;
 				
 				printf("%f in ms.\n", time_spent10B);
@@ -206,7 +195,7 @@ int main()
 
 				bubblesort(vet50, TAM50);
 
-				clock_t end50B = clock();; //Pega o tempo após a execução do algoritmo
+				clock_t end50B = clock();
 				double time_spent50B = (double)(end50B - begin50B) / CLOCKS_PER_SEC;
 				printf("%f in ms.\n", time_spent50B);	
 				
@@ -215,10 +204,10 @@ int main()
 
 				bubblesort(vet90, TAM90);
 				
-				clock_t end90B = clock();; //Pega o tempo após a execução do algoritmo
+				clock_t end90B = clock();
 				double time_spent90B = (double)(end90B - begin90B) / CLOCKS_PER_SEC;
 				printf("%f in ms.\n", time_spent90B);	
-			}
+			
 
 
 			
