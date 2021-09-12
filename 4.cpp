@@ -53,9 +53,11 @@ void quick_sort(long int *a, int left, int right) {
     }
 }
 
-void countsort(long int elementos[], int n, int k){
+void countsort(long int *elementos, long int n, long int k){
     // cria um array inteiro de tamanho `n` para armazenar o array ordenado
     int output[n];
+	
+	
  
     // cria um elementoay inteiro de tamanho `k + 1`, inicializado por todo zero
     int freq[k + 1];
@@ -96,7 +98,8 @@ int main()
 	long int i, vet10[10000], vet50[50000], vet90[90000], elem; 
  	int TAM10 = 10000, TAM50 = 50000, TAM90 = 90000, k = 99999, escolha = 0;
  	double tempo;
- 	
+	long int *countsortArray;
+ 	countsortArray = (long int *)malloc(sizeof(long int)*90000);
  	time_t t_ini, t_fim;
  	
  	FILE *fptr10;
@@ -186,34 +189,36 @@ int main()
 		scanf("%d", &escolha);
 			
 		if(escolha == 1){
-			clock_t begin10B = clock(); //Inicia a contagem do tempo.
+			for(int iteration = 0; iteration < 2; iteration++){
+				
+				clock_t begin10B = clock(); //Inicia a contagem do tempo.
 
-			bubblesort(vet10, TAM10);
-			
-			clock_t end10B = clock();; //Pega o tempo após a execução do algoritmo
-			double time_spent10B = (double)(end10B - begin10B) / CLOCKS_PER_SEC;
-			
-			printf("%f in ms.\n", time_spent10B);	
-			
-			
+				bubblesort(vet10, TAM10);
+				
+				clock_t end10B = clock();; //Pega o tempo após a execução do algoritmo
+				double time_spent10B = (double)(end10B - begin10B) / CLOCKS_PER_SEC;
+				
+				printf("%f in ms.\n", time_spent10B);
+				
+				
 
-			clock_t begin50B = clock();
+				clock_t begin50B = clock();
 
-			bubblesort(vet50, TAM50);
+				bubblesort(vet50, TAM50);
 
-			clock_t end50B = clock();; //Pega o tempo após a execução do algoritmo
-			double time_spent50B = (double)(end50B - begin50B) / CLOCKS_PER_SEC;
-			printf("%f in ms.\n", time_spent50B);	
-			
-			
-			clock_t begin90B = clock();
+				clock_t end50B = clock();; //Pega o tempo após a execução do algoritmo
+				double time_spent50B = (double)(end50B - begin50B) / CLOCKS_PER_SEC;
+				printf("%f in ms.\n", time_spent50B);	
+				
+				
+				clock_t begin90B = clock();
 
-			bubblesort(vet90, TAM90);
-			
-			clock_t end90B = clock();; //Pega o tempo após a execução do algoritmo
-			double time_spent90B = (double)(end90B - begin90B) / CLOCKS_PER_SEC;
-			printf("%f in ms.\n", time_spent90B);	
-
+				bubblesort(vet90, TAM90);
+				
+				clock_t end90B = clock();; //Pega o tempo após a execução do algoritmo
+				double time_spent90B = (double)(end90B - begin90B) / CLOCKS_PER_SEC;
+				printf("%f in ms.\n", time_spent90B);	
+			}
 
 
 			
@@ -286,7 +291,7 @@ int main()
 		else if(escolha == 3){
 
 			clock_t begin10C = clock();
-			countsort(vet10, TAM10, k);
+			countsort(countsortArray, TAM10, k);
 
 			clock_t end10C = clock();; //Pega o tempo após a execução do algoritmo
 			double time_spend10C = (double)(end10C - begin10C) / CLOCKS_PER_SEC;
@@ -300,9 +305,11 @@ int main()
 			printf("%f in ms.\n", time_spend50C);	
 			
 			
-			
-			countsort(vet90, TAM90, k);
-			
+			clock_t begin90C = clock();
+			countsort(countsortArray, TAM90, k);
+			clock_t end90C = clock();; //Pega o tempo após a execução do algoritmo
+			double time_spend90C = (double)(end90C - begin90C) / CLOCKS_PER_SEC;
+			printf("%f in ms.\n", time_spend90C);	
 			
 						
 			fptrC10 = fopen("C10", "w");
@@ -323,6 +330,8 @@ int main()
 		}
 	}
 	
+
+
 	fclose(fptrB10); 
 	fclose(fptrB50); 
 	fclose(fptrB90); 
